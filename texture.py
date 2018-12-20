@@ -69,8 +69,8 @@ def extract_feature(image):
 def create_csv():	
 	
 	files = count.images()
-	mydata = [['energy','contrast','correlation','variance','inverse difference moment','sum average','sum variance','sum entropy','entropy','difference variance','difference entropy','info_corr1',
-			   'info_corr2','mean_B','mean_G','mean_R','std_B','std_G','std_R','area','perimeter','label']]
+	mydata = [['energy','contrast','correlation','variance','inverse difference moment','sum average','sum variance','sum entropy','entropy','difference variance','difference entropy','info_corr',
+			   'maximal_corr_coeff','mean_B','mean_G','mean_R','std_B','std_G','std_R','area','perimeter','label']]
 	
 	path = '/home/ln-2/Desktop/Alok/SVM/alok1/results'
 	for file in files:	
@@ -86,14 +86,19 @@ def create_csv():
 		print(r_img.shape)
 		feature = extract_feature(r_img)
 		label = 0
+		
+		## Healthy leaf are labeled as 0.
 		if(re.search('test[1-9]+',file)):
 			label = 0
 		else:
-			if(re.search('testt[1-4]',file)):
+			## Algal leaf spot is labeled as 1.
+			if(re.search('algal[1-9]+',file)):
 				label = 1
-			elif(re.search('testt[5-9]',file)):
+			## Blister Blight is labeled as 2.	
+			elif(re.search('blister[1-9]+',file)):
 				label = 2
-			elif(re.search('testt10',file)):
+			## Grey Spot is labled as 3.	
+			elif(re.search('grey[1-9]+',file)):
 				label = 3
 		
 		feature = np.append(feature,label)
