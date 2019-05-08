@@ -63,8 +63,8 @@ while(1):
         black = black3.copy()
         masked_image = img3.copy()
     elif k == 115:      #--- Press lower case s to save and exit ---
-        cv2.imwrite(os.path.join('results/Masked_image.jpg'), masked_image)
-        cv2.imwrite(os.path.join('results/Mask.jpg'), black)
+        cv2.imwrite(os.path.join('Masked_image.jpg'), masked_image)
+        cv2.imwrite(os.path.join('Mask.jpg'), black)
         break
     elif k == 27:       #--- Press 'Esc' to exit without saving ---    
         break
